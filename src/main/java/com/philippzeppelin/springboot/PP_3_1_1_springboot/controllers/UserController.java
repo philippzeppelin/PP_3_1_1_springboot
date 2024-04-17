@@ -19,26 +19,26 @@ public class UserController {
     }
 
     @GetMapping
-    public String index(Model model) {
+    public String showAllUsers(Model model) {
         model.addAttribute("users", userService.findAll());
 
         return "users/index";
     }
 
     @GetMapping("/{id}")
-    public String show(@PathVariable("id") int id, Model model) {
+    public String showUser(@PathVariable("id") int id, Model model) {
         model.addAttribute("user", userService.findOne(id));
 
         return "users/show";
     }
 
     @GetMapping("/new")
-    public String newUser(@ModelAttribute("user") User user) {
+    public String showNewUserForm(@ModelAttribute("user") User user) {
         return "users/new";
     }
 
     @PostMapping()
-    public String create(@ModelAttribute("user") User user, BindingResult bindingResult) {
+    public String createUser(@ModelAttribute("user") User user, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             return "users/new";
         }
@@ -49,9 +49,9 @@ public class UserController {
     }
 
     @PatchMapping("/{id}")
-    public String update(@ModelAttribute("user") User user,
-                         BindingResult bindingResult,
-                         @PathVariable("id") int id) {
+    public String updateUser(@ModelAttribute("user") User user,
+                             BindingResult bindingResult,
+                             @PathVariable("id") int id) {
         if (bindingResult.hasErrors()) {
             return "users/edit";
         }
@@ -62,14 +62,14 @@ public class UserController {
     }
 
     @GetMapping("/{id}/edit")
-    public String edit(Model model, @PathVariable("id") int id) {
+    public String showEditUserForm(Model model, @PathVariable("id") int id) {
         model.addAttribute("user", userService.findOne(id));
 
         return "users/edit";
     }
 
     @DeleteMapping("/{id}")
-    public String delete(@PathVariable("id") int id) {
+    public String deleteUser(@PathVariable("id") int id) {
         userService.delete(id);
 
         return "redirect:/users";

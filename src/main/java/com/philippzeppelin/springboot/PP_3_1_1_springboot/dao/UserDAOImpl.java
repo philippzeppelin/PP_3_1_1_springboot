@@ -5,11 +5,12 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.TypedQuery;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
-@Component
+@Repository
 @Transactional(readOnly = true)
 public class UserDAOImpl implements UserDAO {
     private final EntityManagerFactory entityManagerFactory;
