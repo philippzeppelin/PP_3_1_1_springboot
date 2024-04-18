@@ -4,14 +4,11 @@ import com.philippzeppelin.springboot.PP_3_1_1_springboot.models.User;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.TypedQuery;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 @Repository
-@Transactional(readOnly = true)
 public class UserDAOImpl implements UserDAO {
     private final EntityManagerFactory entityManagerFactory;
 
@@ -37,7 +34,6 @@ public class UserDAOImpl implements UserDAO {
         return user;
     }
 
-    @Transactional
     @Override
     public void saveUser(User user) {
         EntityManager entityManager = entityManagerFactory.createEntityManager();
